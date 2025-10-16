@@ -1,4 +1,18 @@
-<div *ngFor="let post of posts">
-    <h3><a href="/posts/{{ post.id }}"> {{ post.title}} </a></h3>
-    <p>by {{post.firstName}} {{ post.lastName }} : on {{ post.dateCreated }}</p>
+<div class="posts-container">
+  <h1>Latest Posts</h1>
+  
+  @if (posts && posts.length > 0) {
+    @for (post of posts; track post.id) {
+      <div class="post-card">
+        <h3 class="post-title">
+          <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+        </h3>
+        <p class="post-meta">
+          by {{ post.firstName }} {{ post.lastName }} on {{ post.dateCreated }}
+        </p>
+      </div>
+    }
+  } @else {
+    <p class="loading">Loading posts...</p>
+  }
 </div>

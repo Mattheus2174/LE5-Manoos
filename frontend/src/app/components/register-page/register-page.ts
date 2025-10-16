@@ -32,7 +32,7 @@ export class RegisterPageComponent implements OnInit {
 
     console.log(this.form)
 
-    this.http.post("https://localhost:7101/api/Login/register", this.form, {responseType: 
+    this.http.post("https://localhost:7000/api/Login/register", this.form, {responseType: 
   'text'}).subscribe(data => {
       this.route.navigate(['/login'])
     })

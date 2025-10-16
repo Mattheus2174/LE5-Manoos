@@ -34,17 +34,21 @@ export class LoginPageComponent implements OnInit {
     }
   
   onSubmit() {
-    const {username, password} = this.form;
-    
-    this.authService.login(username, password).subscribe({
-      next: (data: LoginPostData) => {
-        this.tokenStorage.saveToken(data.id_token);
-        this.tokenStorage.saveUser(data.id)
-        this.router.navigate([this.authService.redirectUrl]);
-      },
-      error: err => console.error(err)
-    });
-
+  console.log('Form object:', this.form);
+  console.log('Username value:', this.form.username);
+  console.log('Password value:', this.form.password);
+  
+  const {username, password} = this.form;
+  console.log('Destructured username:', username);
+  console.log('Destructured password:', password);
+  
+  this.authService.login(username, password).subscribe({
+    next: (data: LoginPostData) => {
+      this.tokenStorage.saveToken(data.id_token);
+      this.tokenStorage.saveUser(data.id)
+      this.router.navigate([this.authService.redirectUrl]);
+    },
+    error: err => console.error(err)
+  });
   }
-
 }

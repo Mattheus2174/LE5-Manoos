@@ -14,8 +14,13 @@ export class AuthServiceService {
   )
   {}
 
-  login (username: string, password: string) {
-    return this.http.post<LoginPostData>("https://localhost:7101/api/Login/login", {username, 
-  password});
+  login(username: string, password: string) {
+  console.log('AuthService - received username:', username);
+  console.log('AuthService - received password:', password);
+  
+  return this.http.post<LoginPostData>("http://localhost:7000/api/Login/login", {
+    username: username,
+    password: password
+  });
   }
 }
